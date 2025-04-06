@@ -133,6 +133,7 @@ header{
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content:center;
 }
 .extension{
     display: flex;
