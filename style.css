@@ -1,0 +1,210 @@
+:root{
+    --theme-back: linear-gradient(180deg, #040918 0%, #091540 100%);
+    --bold-font: hsl(0, 0%, 93%);
+    --light-font: hsl(0, 0%, 65%);
+    --card-back: hsl(226, 25%, 17%);
+    --light-button: hsl(225, 23%, 24%);
+    --active-button: hsl(3, 71%, 56%);
+}
+
+@font-face {
+    font-family: 'noto-sans';
+    src: url("assets/fonts/NotoSans-VariableFont_wdth\,wght.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'noto-sans';
+    position: static;
+    font-size: 20px;
+
+}
+body::before{
+    content: '';
+    z-index: -1000;
+    display: block;
+    position: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    background-image: var(--theme-back);
+}
+
+header{
+    width: 80%;
+    height: 5%;
+    background-color: var(--card-back);
+    position: relative;
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 20px;
+    height: 40px;
+    align-items: center;
+}
+.header-logo{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    pointer-events: none;
+}
+.header-logo img{
+    height: 50px;
+}
+.header-logo p{
+    font-size: 25px;
+    font-weight: bolder;
+    color: var(--bold-font);
+}
+.theme-button{
+    width: 60px;
+    height: 60px;
+    background-color: var(--light-button);
+    border-radius: 20px;
+    position: static;
+    cursor: pointer;
+}
+.theme-button img{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 30px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: auto;
+    position: relative;
+    left: 50%;
+    top: 10vh;
+    transform: translateX(-50%);
+}
+.main-header{
+    width: 100%;
+    font-size: 30px;
+    font-weight: bolder;
+    color: var(--bold-font);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 5vh;
+}
+.main-header-button{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+.main-header button{
+    height: 90%;
+    font-size: 20px;
+    padding: 5px 20px 5px 20px;
+    border: none;
+    border-radius: calc(5*0.45vh);
+    color: var(--light-font);
+}
+.main-header button:not(.active){
+    background-color: var(--light-button);
+    cursor: pointer;
+}
+.main-header button.active{
+    background-color: var(--active-button);
+    cursor: default;
+}
+
+.main-extensions{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.extension{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    height: 247px;
+    width: 400px;
+    background-color: var(--card-back);
+    border-radius: 10px;
+}
+.about{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.about img{
+    height: 90px;
+}
+.about-text{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.about-text .ex-name{
+    font-size: 24px;
+    color: var(--bold-font);
+    font-weight: bolder;
+}
+.about-text .ex-desc{
+    font-size: 18px;
+    color: var(--light-font);
+}
+.actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.actions .remove-button{
+    height: 50px;
+    width: auto;
+    font-size: 20px;
+    padding: 10px;
+    color: var(--bold-font);
+    border: solid 3px var(--light-button);
+    background: transparent;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.toggle{
+    height: 50px;
+    width: 80px;
+    background-color: var(--light-button);
+    border-radius: 25px;
+    cursor: pointer;
+    appearance: none;
+    padding: 6px;
+    position: static;
+}
+.toggle::after{
+    content: '';
+    position: static;
+    display: block;
+    height: 38px;
+    width: 38px;
+    border-radius: 38px;
+    background-color: white;
+    transition: transform .3s;
+}
+.toggle:checked::after{
+    transform: translate(calc(100% - 8px));
+}
+.toggle:checked{
+    background-color: var(--active-button);
+}

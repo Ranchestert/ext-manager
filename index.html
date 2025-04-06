@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Browser extensions manager UI</title>
+</head>
+<body>
+  <header>
+    <div class="header-logo">
+      <img src="assets/images/logo-no-text.svg" alt="icon">
+      <p>Extensions</p>
+    </div>
+    <div class="theme-button">
+      <img src="assets/images/icon-sun.svg" alt="theme-icon" class="theme-pic">
+    </div>
+  </header>
+  <div class="main">
+    <div class="main-header">
+      <p>Extensions List</p>
+      <div class="main-header-button">
+        <button id="all-button" class="active">All</button>
+        <button id="active-button">Active</button>
+        <button id="inactive-button">Inactive</button>
+      </div>
+    </div>
+    <div class="main-extensions">
+    </div>
+  </div>
+  <script>
+    function reload(x){
+      if(x==1){
+        fetch("data.json").then(res=>res.json()).then(data=>{
+          data.forEach(el=>{
+            var ex=document.createElement('div');
+            ex.classList.add('extension');
+            var abdiv=document.createElement('div');
+            abdiv.classList.add('about');
+            var image=document.createElement('img');
+            image.src=el["logo"];
+            abdiv.appendChild(image);
+            var abouttext=document.createElement('div');
+            abouttext.classList.add('about-text');
+            var name=document.createElement('p'),desc=document.createElement('p');
+            name.classList.add('ex-name');
+            name.textContent=el["name"];
+            abouttext.appendChild(name);
+            desc.classList.add('ex-desc');
+            desc.textContent=el["description"];
+            abouttext.appendChild(desc);
+            abdiv.appendChild(abouttext)
+            ex.appendChild(abdiv);
+            document.querySelector(".main-extensions").appendChild(ex);
+            var remb=document.createElement('button');
+            remb.classList.add('remove-button');
+            remb.textContent="Remove";
+            var tog=document.createElement('input');
+            tog.type='checkbox';
+            tog.classList.add('toggle');
+            tog.checked=el["isActive"];
+            var act=document.createElement('div');
+            act.classList.add('actions')
+            act.appendChild(remb);
+            act.appendChild(tog);
+            ex.appendChild(act);
+          });
+        });
+      }else if(x==2){
+        fetch("data.json").then(res=>res.json()).then(data=>{
+          data.forEach(el=>{
+            if(el["isActive"]){
+              var ex=document.createElement('div');
+              ex.classList.add('extension');
+              var abdiv=document.createElement('div');
+              abdiv.classList.add('about');
+              var image=document.createElement('img');
+              image.src=el["logo"];
+              abdiv.appendChild(image);
+              var abouttext=document.createElement('div');
+              abouttext.classList.add('about-text');
+              var name=document.createElement('p'),desc=document.createElement('p');
+              name.classList.add('ex-name');
+              name.textContent=el["name"];
+              abouttext.appendChild(name);
+              desc.classList.add('ex-desc');
+              desc.textContent=el["description"];
+              abouttext.appendChild(desc);
+              abdiv.appendChild(abouttext)
+              ex.appendChild(abdiv);
+              document.querySelector(".main-extensions").appendChild(ex);
+              var remb=document.createElement('button');
+              remb.classList.add('remove-button');
+              remb.textContent="Remove";
+              var tog=document.createElement('input');
+              tog.type='checkbox';
+              tog.classList.add('toggle');
+              tog.checked=el["isActive"];
+              var act=document.createElement('div');
+              act.classList.add('actions')
+              act.appendChild(remb);
+              act.appendChild(tog);
+              ex.appendChild(act);
+            }
+          });
+        });
+      }else{
+        fetch("data.json").then(res=>res.json()).then(data=>{
+          data.forEach(el=>{
+            if(!el["isActive"]){
+              var ex=document.createElement('div');
+              ex.classList.add('extension');
+              var abdiv=document.createElement('div');
+              abdiv.classList.add('about');
+              var image=document.createElement('img');
+              image.src=el["logo"];
+              abdiv.appendChild(image);
+              var abouttext=document.createElement('div');
+              abouttext.classList.add('about-text');
+              var name=document.createElement('p'),desc=document.createElement('p');
+              name.classList.add('ex-name');
+              name.textContent=el["name"];
+              abouttext.appendChild(name);
+              desc.classList.add('ex-desc');
+              desc.textContent=el["description"];
+              abouttext.appendChild(desc);
+              abdiv.appendChild(abouttext)
+              ex.appendChild(abdiv);
+              document.querySelector(".main-extensions").appendChild(ex);
+              var remb=document.createElement('button');
+              remb.classList.add('remove-button');
+              remb.textContent="Remove";
+              var tog=document.createElement('input');
+              tog.type='checkbox';
+              tog.classList.add('toggle');
+              tog.checked=el["isActive"];
+              var act=document.createElement('div');
+              act.classList.add('actions')
+              act.appendChild(remb);
+              act.appendChild(tog);
+              ex.appendChild(act);
+            }
+          });
+        });
+      }
+    }
+    document.addEventListener('DOMContentLoaded',()=>{
+      reload(1);
+    });
+    document.querySelector("#all-button").addEventListener('click',()=>{
+      let allb=document.querySelector("#all-button");
+      if(!allb.classList.contains('active')){
+        document.querySelector(".active").classList.remove('active');
+        allb.classList.add('active');
+        const parentElement = document.querySelector('.main-extensions');
+        while (parentElement.firstChild) {
+          parentElement.removeChild(parentElement.firstChild);
+        }
+        reload(1);
+      }
+    });
+    document.querySelector("#active-button").addEventListener('click',()=>{
+      let allb=document.querySelector("#active-button");
+      if(!allb.classList.contains('active')){
+        document.querySelector(".active").classList.remove('active');
+        allb.classList.add('active');
+        const parentElement = document.querySelector('.main-extensions');
+        while (parentElement.firstChild) {
+          parentElement.removeChild(parentElement.firstChild);
+        }
+        reload(2);
+      }
+    });
+    document.querySelector("#inactive-button").addEventListener('click',()=>{
+      let allb=document.querySelector("#inactive-button");
+      if(!allb.classList.contains('active')){
+        document.querySelector(".active").classList.remove('active');
+        allb.classList.add('active');
+        const parentElement = document.querySelector('.main-extensions');
+        while (parentElement.firstChild) {
+          parentElement.removeChild(parentElement.firstChild);
+        }
+        reload(3);
+      }
+    });
+    document.querySelector('.theme-button').addEventListener('click',()=>{
+      const root = document.documentElement;
+      const vars = getComputedStyle(root);
+      if(vars.getPropertyValue("--theme-back").trim()=="linear-gradient(180deg, #040918 0%, #091540 100%)"){
+        root.style.setProperty("--theme-back","linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%)");
+        document.querySelector(".theme-pic").src="./assets/images/icon-moon.svg";
+        root.style.setProperty("--card-back","white");
+        root.style.setProperty("--light-button","hsl(217, 61%, 90%)");
+        root.style.setProperty("--bold-font","hsl(227, 75%, 14%)");
+        root.style.setProperty("--light-font","hsl(226, 11%, 37%)");
+      }else{
+        root.style.setProperty("--theme-back","linear-gradient(180deg, #040918 0%, #091540 100%)");
+        document.querySelector(".theme-pic").src="./assets/images/icon-sun.svg";
+        root.style.setProperty("--card-back","hsl(226, 25%, 17%)");
+        root.style.setProperty("--light-button","hsl(225, 23%, 24%)");
+        root.style.setProperty("--bold-font","hsl(0, 0%, 93%)");
+        root.style.setProperty("--light-font","hsl(0, 0%, 65%)");
+      }
+    });
+    document.querySelectorAll('.toggle').forEach((el,i)=>{
+      el.addEventListener('click',()=>{
+
+      });
+    });
+  </script>
+</body>
+</html>
