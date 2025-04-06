@@ -139,8 +139,8 @@ header{
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
-    height: 247px;
-    width: 400px;
+    height: 216px;
+    width: 350px;
     background-color: var(--card-back);
     border-radius: 10px;
 }
